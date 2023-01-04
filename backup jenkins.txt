@@ -1,0 +1,37 @@
+#BACKUP OF JOB
+
+install ThinBackup plugin (seen in tools and Action)
+in ThinBackup plugin - setting - backup - paste the path (from server)
+IN SERVER
+root - mkdir /home/ubuntu/myjenkinsbackup (Copy the path)
+     
+after pasting shows error as root didn"t have root permission u
+can see 
+cd /home/ubuntu - ls -al (shows root, have to change to jenkins)
+ 
+chown jenkins:jenkins myjenkinsbackup
+ls -al (u will see jenkins as owner,now u will see no error in plugin setting of Thin)
+
+IN THINBACKUP PLUGIN - setting
+ 
+Backup schedule for full backups
+H 2 * *  6 (@ sat, midnight 2pm)
+Backup schedule for differential backups
+H 2 * * *  (yesterday and today will backup)
+Click all backups except - Backup additional files
+ 
+IN SERVER
+cd /home/ubuntu/myjenkinsbackup - ls (nothing seen)
+ 
+In ThinBackup plugin
+click backup [then go to server - ls (u will see backup)]
+
+IN JENKINS Dashboard
+ThinBackup plugin - Restore - click two blocks
+
+IN SERVER
+service jenkins restart
+
+IN JENKINS Dashboard
+[u will find job which is deleted]
+ 

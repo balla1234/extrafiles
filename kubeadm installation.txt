@@ -1,0 +1,59 @@
+kubeadm join 172.31.17.182:6443 --token x23fyb.zwtnjf6he08z35zq --discovery-token-ca-cert-hash sha256:c1fdf2d08d97227ffb111254fc4de80fbb9c277232ea372a62443184b1910d52
+
+
+
+
+
+DOCKER
+
+cat <<EOF | sudo tee /etc/docker/daemon.json
+{
+"exec-opts": ["native.cgroupdriver=systemd"],
+"log-driver": "json-file",
+"log-opts": {
+"max-size": "100m"
+},
+"storage-driver": "overlay2"
+}
+EOF
+
+sudo systemctl enable docker
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+
+
+KUBERNETES
+
+
+after docker installation
+
+on Master  run this 3 commands
+
+
+
+ sudo apt-get install -y kubelet kubeadm kubectl
+ sudo apt-mark hold kubelet kubeadm kubectl
+
+rm /etc/containerd/config.toml
+systemctl restart containerd
+kubeadm init
+
+on Nodes run this 2 commands before Join command
+
+ sudo apt-get install -y kubelet kubeadm kubectl
+systemctl restart containerd
+
+run at last
+
+kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
+
+
+
+
+kubeadm join 172.31.25.146:6443 --token 4df6ql.1jn74kfs56j44ige --discovery-token-ca-cert-hash sha256:5d149ec6de988f51a929dc7deb3554716e607f864c456cf5d1e90f73281a8240
+
+
+
+
+
+

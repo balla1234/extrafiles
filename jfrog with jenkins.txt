@@ -1,0 +1,32 @@
+in google : jfrog
+start a trial - cloud - sign in with email - 
+login with username and passwd
+select package type - maven - create
+create local repository - maven  (give repository key and create local repo)
+
+IN JENKINS
+
+install plugin- artifactory and jfrog 
+
+global tool config - add maven - name (give) - apply and save
+config system - jfog  - write instance ID 
+                      - go to advanced config - jrog artifactory url [(paste)/jfog.io/artifactory] 
+
+IN JFROG
+for url- setting at top - platform security - connection details (jfrog url copy)
+
+IN JENKINS
+config system - Default Deployer Crediantials - username (email) and passwd -test connection
+
+new item - paste git repo - 
+         - build steps - invoke artifactory maven 3 - maven version(name automates)
+                                                    - root pom (pom.xml)
+                                                    - goals - install
+
+         - build env - click maven3-Artifactory integration
+                                                     -refresh (click repo name)
+                      - Exclude pattern - */*.war=>$(BUILD_NUMBER)
+
+          -SCM - write main in (branches to build)
+
+apply and save; build 

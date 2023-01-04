@@ -1,0 +1,172 @@
+http://3.139.99.101:8080/   
+
+ 1  apt-get update
+    2  mkdir projects
+    3  cd projects
+    4  git clone https://github.com/balla1234/project2.git
+    5  ls
+    6  cd project2
+    7  pip install django
+    8  pip3 install django
+    9  apt install python3-pip
+   10  pip3 install django
+   11  python manage.py migrate
+   12  python3 manage.py migrate
+   13  python3 manage.py runserver
+   14  ls
+   15  vi todoApp/settings.py
+
+## Internationalization
+# https://docs.djangoproject.com/en/2.2/topics/i18n/
+
+LANGUAGE_CODE = 'en-us'
+
+TIME_ZONE = 'Asia/Dhaka'
+
+USE_I18N = True
+
+USE_L10N = True
+
+USE_TZ = True
+
+
+   16  python3 manage.py runserver
+   17  python3 manage.py migrate
+   18  python3 manage.py runserver
+   19  python3 manage.py runserver 0.0.0.0:8000
+   20  history
+   21  python3 manage.py runserver 0.0.0.0:8001
+   22  vi todoApp/settings.py
+
+# TO ALLOW HOST
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+
+ALLOWED_HOSTS = ['*']
+
+
+
+   23  python3 manage.py runserver 0.0.0.0:8001
+   24  nohup python3 manage.py runserver 0.0.0.0:8001 &   #AT BACKGROUND APP WILL GO ON RUN
+   25  lsof -i:8001          #LIST OF SERVICES ON THAT PORT
+   26  kill -9 8207
+   27  history
+   28  docker
+   29  apt  install docker.io
+   30  vi Dockerfile
+
+# FROM python:3
+RUN pip install django==3.2
+COPY . .
+RUN python manage.py migrate
+CMD ["python","manage.py","runserver","0.0.0.0:8001"]
+
+
+   31  docker build -t todo-app .
+   32  docker ps
+   33  docker images
+   34  docker run -p 8001:8001 c965c70c3c47
+   35  history
+
+
+    1  apt-get install openjdk-11-jre
+    2  java -version
+    3  wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+    4  sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+    5  sudo apt update
+    6  sudo apt install jenkins
+    7  sudo systemctl start jenkins
+    8  sudo systemctl status jenkins
+    9  cat /var/lib/jenkins/secrets/initialAdminPassword
+   10  systemctl stop jenkins
+   11  systemctl status jenkins
+   12  docker pull jenkins
+   13  docker pull jenkins/jenkins
+   14  sudo docker run -d -p 8080:8080 docker.io/jenkins/jenkins:latest
+   15  docker ps
+   16  docker kill 43bc08a8fadc
+   17  docker rm 43bc08a8fadc
+   18  33b72fd36bd1
+   19  cat /var/jenkins_home/secrets/initialAdminPassword
+   20  history
+
+
+
+setup an agent
+new node : Node name-      (permanent agent)
+Name
+Todo-App-Dev
+
+Description
+This node is for Todo NameApp pipeline
+
+Number of executors
+1
+
+Remote root directory
+/root
+
+Labels
+todo-dev
+
+Usage
+Use this node as much as possible
+
+Launch method
+Launch agent by connecting it to the controller
+
+Internal data directory
+remoting
+
+Use WebSocket (CLICK)
+
+ 
+Availability
+Keep this agent online as much as possible
+
+IN JENKINS
+create item : Todo-dev
+build Steps: Execute shell - 
+                    cd /root/projects/project2
+
+IN SERVER
+in projects (cd ..) - 
+DO RUN THIS CMD:- chmod 777 project2  #U CAN RUN ANY COMMANDS IN
+
+
+
+
+
+
+
+
+
+ 
+
+
+FROM python:3
+RUN pip install django==3.2
+COPY . .
+RUN python manage.py migrate
+CMD ["python","manage.py","runserver","0.0.0.0:8001"]
+
+
+
+
+    
+
+
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+
+ALLOWED_HOSTS = ['*']
+
+
+
+# At background app will run 
+
+^[[A^Croot@ip-172-31-39-156:~/projects/project2# nohup python3 manage.py runserver 0.0.0.0:8001 &
+[1] 8205
+root@ip-172-31-39-156:~/projects/project2# nohup: ignoring input and appending output to 'nohup.out'
+

@@ -1,0 +1,50 @@
+apt install awscli
+
+aws --version
+
+aws configure
+
+aws iam list-users
+
+
+
+curl -LO https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64
+
+curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64
+
+
+ curl -LO https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest| grep tag_name | cut -d '"' -f 4)/kops-linux-amd64
+
+chmod +x kops-linux-amd64
+
+sudo mv kops-linux-amd64 /usr/local/bin/kops
+
+kops version
+
+Install kubectl
+# curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+
+
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
+
+vi ~/.bashrc
+
+export KOPS_CLUSTER_NAME=gayatriinfotech.in
+export KOPS_STATE_STORE=s3://nitindevops6dec22
+
+source ~/.bashrc
+
+ssh-keygenkops create cluster \
+--state=${KOPS_STATE_STORE} \
+--node-count=2 \
+--master-size=t2.medium \
+--node-size=t2.medium \
+--zones=ap-northeast-1 \
+--name=${KOPS_CLUSTER_NAME} \
+--dns public \
+--master-count 1
+
+
+
+
