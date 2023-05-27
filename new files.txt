@@ -1,4 +1,4 @@
-http://18.223.109.48:8080/
+wget -O metricserver.yml https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.6.2/components.yaml
 
 
 Command to be executed:
