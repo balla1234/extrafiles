@@ -1,4 +1,14 @@
 wget -O metricserver.yml https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.6.2/components.yaml
+--kubelet-insecure-tls
+kubectl get pods -n kubesystem (log also can check)
+Apply Deployment file
+kubectl get all
+kubectl autoscale deployment mydeploy --cpu-percent=20 --min=1 --max=10
+kubectl get all
+watch kubectl get all 
+
+other terminal 
+kubectl exec mydeploy-fennwn -it -- /bin/bash
 
 
 Command to be executed:
